@@ -92,7 +92,7 @@ export default {
           },
           {
             name: 'B',
-            // 在 nam e为 C 路由上缓存路由组件 B
+            // 在 name为 C 路由上缓存路由组件 B
             cachedOn: ['C']
           }
         ]
