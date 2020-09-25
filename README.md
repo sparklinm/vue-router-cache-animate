@@ -2,6 +2,10 @@
 
 使用 vue 的 keep-alive 和 transition 组件对路由进行快捷的动画和缓存设置。
 
+## demo
+
+[demo](https://sparklinm.github.io/vue-router-cache-animate/examples/)
+
 ## 安装
 
 ```bash
@@ -36,22 +40,32 @@ export default {
     return {
       caches: [
         {
-          // 路由name和路由组件的name
-          name: 'A',
+          // 路由 name 和路由组件的 name（需保证相同）
+          names: {
+            include: ['A'],
+            exclude: undefined
+          },
           // 在哪些路由上被缓存
-          cachedOn: '*'
-        },
-        {
-          name: 'B',
-          cachedOn: ['C']
+          cachedOn: {
+            include: ['B', 'C'],
+            exclude: undefined
+          }
         }
       ],
       transitions: [
         {
           name: 'slide-left',
           reverseName: 'slide-right',
-          from: ['A'],
-          to: ['B', 'C']
+          from: {
+            // 路由 name
+            include: ['A'],
+            exclude: undefined
+          },
+          to: {
+            // 路由 name
+            include: ['B', 'C'],
+            exclude: undefined
+          }
         }
       ]
     }
@@ -66,40 +80,53 @@ export default {
 
 缓存设置。
 
-- 类型：`Array|String`
-- 默认值：`*`
+- 类型：`Array`
+- 默认值：
+
+  ```js
+  {
+    names: {},
+    cachedOn: {}
+  }
+  ```
+
+  默认缓存所有路由。
+
 - 示例：
 
   ```js
   export default {
     data() {
       return {
-        // 缓存所有路由
-        caches: '*'
-      }
-    }
-  }
-
-  export default {
-    data() {
-      return {
         caches: [
           {
-            // 路由 name 和路由组件的 name
-            name: 'A',
-            // 在所有路由上缓存路由组件 A
-            cachedOn: '*'
+            // 路由 name 和路由组件的 name（需保证相同）
+            names: {
+              include: ['A']
+              // exclude: []
+            },
+            // 在'B', 'C'路由上缓存路由组件 A
+            cachedOn: {
+              include: ['B', 'C']
+              // exclude: []
+            }
           },
           {
-            name: 'B',
-            // 在 name为 C 路由上缓存路由组件 B
-            cachedOn: ['C']
+            names: {
+              include: ['B']
+            },
+            // 在 'C' 路由上缓存路由组件 B
+            cachedOn: {
+              include: ['C']
+            }
           }
         ]
       }
     }
   }
   ```
+
+  除了使用 `include` 包含，还可以使用 `exclude` 排除。
 
 ### transitions
 
@@ -115,13 +142,21 @@ export default {
       return {
         transitions: [
           {
-            // transition 组件的 name
-            // 从 A 路由到 B, C 路由使用 'slide-left' 动画
+            // transition 组件的 name 选项
+            // 从 'A' 路由到 'B', 'C' 路由使用 'slide-left' 动画
             name: 'slide-left',
-            // B, C 路由到 A, 使用 'slide-right' 动画
+            // 'B', 'C' 路由到 'A', 使用 'slide-right' 动画
             reverseName: 'slide-right',
-            from: ['A'],
-            to: ['B', 'C']
+            from: {
+              // 路由 name
+              include: ['A']
+              // exclude: []
+            },
+            to: {
+              // 路由 name
+              include: ['B', 'C']
+              // exclude: []
+            }
           }
         ]
       }
@@ -151,7 +186,6 @@ export default {
 export default {
   data() {
     return {
-      caches: '*',
       noCacheOnBack: true
     }
   }
