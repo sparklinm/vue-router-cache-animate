@@ -21,6 +21,9 @@ main.js
 import Vue from 'vue'
 import router from './router'
 import vueRouterCacheAnimate from 'vue-router-cache-animate'
+
+// 提供的移动端 slide-left、slide-right 动画，也可以自定义
+import 'vue-router-cache-animate/dist/css/animate.css'
 Vue.use(vueRouterCacheAnimate, { router })
 ```
 
