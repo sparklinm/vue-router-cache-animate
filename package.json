@@ -1,6 +1,6 @@
 {
   "name": "vue-router-cache-animate",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Quickly customize caching and animation for vue-router.",
   "main": "dist/bundle.min.cjs.js",
   "module": "dist/bundle.min.esm.js",
@@ -22,7 +22,9 @@
     "dev": "rollup -c -w"
   },
   "files": [
-    "dist"
+    "dist",
+    "src",
+    "examples"
   ],
   "devDependencies": {
     "@babel/core": "^7.10.4",
