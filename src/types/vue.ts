@@ -1,0 +1,1 @@
+export { VNode, PropType } from 'vue'

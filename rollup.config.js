@@ -5,10 +5,11 @@ const isDev = process.env.NODE_ENV !== 'production'
 
 import babel from 'rollup-plugin-babel'
 import pkg from './package.json'
+import typescript from 'rollup-plugin-typescript2'
 // import { eslint } from 'rollup-plugin-eslint'
 
 export default {
-  input: 'src/index.js',
+  input: 'src/index.ts',
   // output: {
   //   file: (!isDev && 'bundle.min.js') || 'bundle.js',
   //   format: 'umd',
@@ -33,6 +34,13 @@ export default {
     resolve(),
     commonjs(),
     !isDev && terser(),
+    typescript({
+      tsconfigOverride: {
+        compilerOptions: {
+          module: 'ESNext'
+        }
+      }
+    }),
     babel({
       exclude: 'node_modules/**', // 只编译我们的源代码
       runtimeHelpers: true
