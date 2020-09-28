@@ -1,53 +1,58 @@
 module.exports = {
-  'root': true,
-  'env': {
-    'browser': true,
-    'node': true,
-    'es6': true
+  root: true,
+  env: {
+    browser: true,
+    node: true,
+    es6: true
   },
-  'parserOptions': {
-    'parser': 'babel-eslint',
-    'ecmaVersion': 2017,
-    'sourceType': 'module'
+  parserOptions: {
+    parser: '@typescript-eslint/parser',
+    ecmaVersion: 2017,
+    sourceType: 'module',
+    project: './tsconfig.json'
   },
-  'extends': ['plugin:vue/recommended', 'eslint:recommended'],
-  'plugins': ['html', 'vue'],
-  'settings': {
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:vue/recommended'
+  ],
+  plugins: ['html', 'vue', '@typescript-eslint'],
+  settings: {
     'html/indent': '+2',
     'html/report-bad-indent': 'error'
   },
-  'rules': {
-    'strict': 0,
-    'indent': [
+  rules: {
+    strict: 0,
+    indent: [
       'error',
       2,
       {
-        'SwitchCase': 1,
-        'MemberExpression': 1,
-        'ArrayExpression': 1,
-        'FunctionDeclaration': {
-          'parameters': 'first'
+        SwitchCase: 1,
+        MemberExpression: 1,
+        ArrayExpression: 1,
+        FunctionDeclaration: {
+          parameters: 'first'
         },
-        'CallExpression': {
-          'arguments': 1
+        CallExpression: {
+          arguments: 1
         },
-        'ImportDeclaration': 'first',
-        'ObjectExpression': 1
+        ImportDeclaration: 'first',
+        ObjectExpression: 1
       }
     ],
     'no-sequences': 'error',
     'linebreak-style': 'off',
-    'quotes': ['error', 'single'],
-    'semi': ['error', 'never'],
+    quotes: ['error', 'single'],
+    semi: ['error', 'never'],
     'semi-style': ['error', 'last'],
     'semi-spacing': [
       'error',
       {
-        'before': false,
-        'after': true
+        before: false,
+        after: true
       }
     ],
-    'camelcase': 'off',
+    camelcase: 'off',
     'default-case': 'error',
     'no-new-func': 'error',
     'no-void': 'error',
@@ -58,7 +63,7 @@ module.exports = {
     'prefer-const': [
       'error',
       {
-        'destructuring': 'all'
+        destructuring: 'all'
       }
     ],
     'no-trailing-spaces': 'error',
@@ -81,7 +86,7 @@ module.exports = {
     'no-unused-vars': 'error',
     'no-multi-spaces': 'error',
     'valid-jsdoc': 'warn',
-    'eqeqeq': 'error',
+    eqeqeq: 'error',
     'guard-for-in': 'warn',
     'no-multi-str': 'error',
     'no-return-await': 'error',
@@ -92,24 +97,24 @@ module.exports = {
     'key-spacing': [
       'error',
       {
-        'beforeColon': false,
-        'afterColon': true,
-        'mode': 'strict'
+        beforeColon: false,
+        afterColon: true,
+        mode: 'strict'
       }
     ],
     'keyword-spacing': [
       'error',
       {
-        'before': true,
-        'after': true
+        before: true,
+        after: true
       }
     ],
     'space-before-blocks': [
       'error',
       {
-        'functions': 'always',
-        'keywords': 'always',
-        'classes': 'always'
+        functions: 'always',
+        keywords: 'always',
+        classes: 'always'
       }
     ],
     'spaced-comment': ['error', 'always'],
@@ -117,8 +122,8 @@ module.exports = {
     'arrow-spacing': [
       'error',
       {
-        'before': true,
-        'after': true
+        before: true,
+        after: true
       }
     ],
     'no-useless-constructor': 'warn',
@@ -126,8 +131,8 @@ module.exports = {
     'comma-spacing': [
       'error',
       {
-        'before': false,
-        'after': true
+        before: false,
+        after: true
       }
     ],
     'space-before-function-paren': ['error', 'always'],
@@ -136,7 +141,7 @@ module.exports = {
     'array-bracket-newline': [
       'error',
       {
-        'multiline': true
+        multiline: true
       }
     ],
     // 'array-element-newline': [
@@ -148,23 +153,26 @@ module.exports = {
     'object-property-newline': [
       'error',
       {
-        'allowAllPropertiesOnSameLine': false
+        allowAllPropertiesOnSameLine: false
       }
     ],
     'object-curly-newline': [
       'error',
       {
-        'ObjectExpression': {
-          'multiline': true,
-          'minProperties': 1
+        ObjectExpression: {
+          multiline: true,
+          minProperties: 1
         },
-        'ObjectPattern': {
-          'multiline': true
+        ObjectPattern: {
+          multiline: true
         },
-        'ImportDeclaration': 'never',
-        'ExportDeclaration': {
-          'multiline': true,
-          'minProperties': 3
+        ImportDeclaration: {
+          multiline: true,
+          minProperties: 4
+        },
+        ExportDeclaration: {
+          multiline: true,
+          minProperties: 3
         }
       }
     ],
@@ -172,21 +180,29 @@ module.exports = {
     'padding-line-between-statements': [
       'error',
       {
-        'blankLine': 'always',
-        'next': '*',
-        'prev': ['const', 'let', 'var']
+        blankLine: 'always',
+        next: '*',
+        prev: ['const', 'let', 'var']
       },
       {
-        'blankLine': 'any',
-        'next': ['const', 'let', 'var'],
-        'prev': ['const', 'let', 'var']
+        blankLine: 'any',
+        next: ['const', 'let', 'var'],
+        prev: ['const', 'let', 'var']
       },
       {
-        'blankLine': 'always',
-        'next': 'export',
-        'prev': '*'
+        blankLine: 'always',
+        next: 'export',
+        prev: '*'
+      }
+    ],
+    '@typescript-eslint/indent': ['error', 2],
+    '@typescript-eslint/array-type': [
+      'error',
+      {
+        default: 'array-simple',
+        readonly: 'array-simple'
       }
     ]
   },
-  'globals': {}
+  globals: {}
 }

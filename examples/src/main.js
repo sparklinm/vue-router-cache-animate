@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 
-import vueRouterCacheAnimate from '../../src'
+import vueRouterCacheAnimate from '../../src/index'
 
 Vue.use(vueRouterCacheAnimate, {
   router

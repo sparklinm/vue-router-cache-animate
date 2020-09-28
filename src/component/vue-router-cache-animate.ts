@@ -1,8 +1,17 @@
+import {
+  Data,
+  Caches,
+  Transitions,
+  VNode,
+  PropType,
+  CreateElement
+} from '../types/'
+
 export default {
   name: 'vue-router-cache-animate',
   props: {
     caches: {
-      type: Array,
+      type: Array as PropType<Caches>,
       default: () => [
         {
           // router name and router component name
@@ -24,7 +33,7 @@ export default {
       default: false
     },
     transitions: {
-      type: Array,
+      type: Array as PropType<Transitions>,
       default: () => [
         {
           name: '',
@@ -35,7 +44,7 @@ export default {
       ]
     }
   },
-  data () {
+  data (): Data {
     return {
       include: undefined,
       exclude: [],
@@ -43,7 +52,7 @@ export default {
       css: false
     }
   },
-  render (h) {
+  render (h: CreateElement): VNode {
     const vNode = this.$slots.default && this.$slots.default[0]
 
     return h(

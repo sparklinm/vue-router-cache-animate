@@ -28,7 +28,7 @@ export default {
 </script>
 
 <style lang="stylus">
-@import '../../src/animate.css';
+@import '../../src/css/animate.css';
 
 html,body
   height 100%
